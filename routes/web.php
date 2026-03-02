@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupplierController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StockHistoryController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +26,25 @@ Route::get('/', function () {
 });
 
 
-    Route::get('dashboard',[\App\Http\Controllers\DashboardController::class,'index'])->name('dashboard.index');
+Route::redirect('/','login',301);
+#AuthController
+Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('dologin');
+
+Route::group(['middleware'=> 'auth'], function(){
+
+        Route::get('user',[UserController::class,'index'])->name('users.index');
+        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+        Route::prefix('users')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('users.index');
+        Route::post('/', [UserController::class, 'store'])->name('users.store');
+        Route::put('/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+});
+
+#EndAuthController
+        Route::get('dashboard',[\App\Http\Controllers\DashboardController::class,'index'])->name('dashboard.index');
 #SupplierController
     Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers.index');
     Route::post('/suppliers/store', [SupplierController::class, 'store'])->name('suppliers.store');
@@ -63,6 +83,19 @@ Route::get('/', function () {
     Route::get('/transactions/report', [TransactionController::class, 'report'])->name('transactions.report');
     Route::get('/transactions/report/pdf', [TransactionController::class, 'reportPdf'])->name('transactions.report.pdf');
 #EndContrller Transaction
+
+
+
+
+});
+
+
+
+
+
+
+    
+#
 
 
 

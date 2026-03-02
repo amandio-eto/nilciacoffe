@@ -268,25 +268,14 @@
                 </li>
               </ul>
             </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)" aria-expanded="false">
-                <div class="d-flex align-items-center gap-3">
-                  <span class="d-flex">
-                    <i class="ti ti-chart-donut-3"></i>
-                  </span>
-                  <span class="hide-menu">Blog</span>
-                </div>
-                
-              </a>
-             
-            </li>
+          
             <li class="sidebar-item">
               <a class="sidebar-link justify-content-between"  
-                href="#"
+                href="{{ route('users.index') }}"
                 aria-expanded="false">
                 <div class="d-flex align-items-center gap-3">
                   <span class="d-flex">
-                    <i class="ti ti-user-circle"></i>
+                  
                   </span>
                   <span class="hide-menu">User Profile</span>
                 </div>
@@ -358,7 +347,10 @@
                       <i class="ti ti-list-check fs-6"></i>
                       <p class="mb-0 fs-3">My Task</p>
                     </a>
-                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                    <form action="{{ route('logout') }}" method="post">
+                      @csrf
+                    <button type="submit"  class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</button>
+                    </form>
                   </div>
                 </div>
               </li>
