@@ -139,7 +139,7 @@
                 </div>
                 <div class="modal-body">
                     <input type="text" name="name" class="form-control mb-2" placeholder="Product Name" required>
-                    <input type="number" name="price" class="form-control mb-2" placeholder="Price" required>
+                    <input type="number" name="price" class="form-control mb-2" placeholder="Price" >
                     <input type="number" name="stock" class="form-control mb-2" placeholder="Stock" required>
                     <input type="file" name="image" class="form-control">
                 </div>
