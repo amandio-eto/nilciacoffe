@@ -113,18 +113,23 @@ public function reportPdf(Request $request)
         DB::beginTransaction();
         try {
             $total = 0;
+        foreach ($request->products as $item) {
 
-            // Hitung total & kurangi stock
-            foreach ($request->products as $item) {
-                $product = Product::find($item['id']);
-                if (!$product) continue;
+            // Ambil data produk dari table products
+            $product = DB::table('products')->where('id', $item['id'])->first();
 
-                $subtotal = $product->price * $item['qty'];
-                $total += $subtotal;
+            if (!$product) continue;
 
-                // Kurangi stock
-                $product->stock -= $item['qty'];
-                $product->save();
+            // Hitung subtotal
+            $subtotal = $product->price * $item['qty'];
+            $total += $subtotal;
+
+            // Kurangi stock langsung di DB
+            DB::table('products')
+                ->where('id', $item['id'])
+                ->update([
+                    'stock' => $product->stock - $item['qty']
+                ]);
             }
 
             $grand_total = $total;
