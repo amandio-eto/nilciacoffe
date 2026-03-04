@@ -193,8 +193,8 @@ public function reportPdf(Request $request)
                          ->get();
 
             // Load PDF langsung
-            $width = 164; // 58mm
-            $height = 500; // tinggi default, bisa menyesuaikan isi
+            $width =250; // 58mm
+            $height = 300; // tinggi default, bisa menyesuaikan isi
 
             $pdf = Pdf::loadView('transaction.receipt_58', compact('transaction', 'details'))
                     ->setPaper([0, 0, $width, $height]); // format [x0, y0, x1, y1]// 58mm thermal paper

@@ -5,8 +5,8 @@
     <style>
         body {
             font-family: "Courier New", monospace;
-            font-size: 11px;
-            margin: 2mm;
+            font-size: 12px;
+           
         }
         .center { text-align: center; }
         .line { border-bottom: 1px dashed #000; margin: 2px 0; }
@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="center">
-        <h4>{{ $transaction->store_name ?? 'Coffee Bar' }}</h4>
+        <h4>{{ $transaction->store_name ?? 'NINE COFFE' }}</h4>
         <p>Invoice: {{ $transaction->invoice_number }}</p>
         <p>Date: {{ \Carbon\Carbon::parse($transaction->created_at)->format('d/m/Y H:i') }}</p>
     </div>
