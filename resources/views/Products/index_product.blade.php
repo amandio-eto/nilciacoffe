@@ -138,9 +138,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" name="name" class="form-control mb-2" placeholder="Product Name" required>
+                    <input type="text" name="name" class="form-control mb-2" placeholder="Product Name">
                     <input type="number" name="price" class="form-control mb-2" placeholder="Price" >
-                    <input type="number" name="stock" class="form-control mb-2" placeholder="Stock" required>
+                    <input type="number" name="stock" class="form-control mb-2" placeholder="Stock" >
                     <input type="file" name="image" class="form-control">
                 </div>
                 <div class="modal-footer">
