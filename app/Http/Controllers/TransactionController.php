@@ -157,18 +157,30 @@ public function reportPdf(Request $request)
             ]);
 
             // Simpan detail transaksi
+            
             foreach ($request->products as $item) {
-                $product = Product::find($item['id']);
+    // Ambil data produk dari table products
+                $product = DB::table('products')->where('id', $item['id'])->first();
+
                 if (!$product) continue;
 
+                // Insert ke transaction_details pakai Query Builder
                 DB::table('transaction_details')->insert([
                     'transaction_id' => $transaction_id,
-                    'product_id' => $product->id,
-                    'qty' => $item['qty'],
-                    'price' => $product->price,
-                    'subtotal' => $product->price * $item['qty'],
-                    'created_at' => Carbon::now(),
+                    'product_id'     => $product->id,
+                    'qty'            => $item['qty'],
+                    'price'          => $product->price,
+                    'subtotal'       => $product->price * $item['qty'],
+                    'created_at'     => Carbon::now(),
+                    'updated_at'     => Carbon::now(),
                 ]);
+
+    // Update stock langsung di DB
+    DB::table('products')
+        ->where('id', $product->id)
+        ->update([
+            'stock' => $product->stock - $item['qty']
+        ]);
             }
 
             // Ambil data transaksi & details pakai Query Builder
