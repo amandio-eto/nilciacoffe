@@ -1,3 +1,12 @@
+
+@php
+$data = DB::table('brands')->get();
+foreach ($data as $brand) {
+    $foto = $brand->images;
+    $name = $brand->brand_name;
+
+}
+@endphp
 <!doctype html>
 <html lang="en">
 
@@ -21,9 +30,11 @@
             <div class="card mb-0">
               <div class="card-body">
                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <img src="./assets/images/logos/logo.svg" alt="">
+                  <img src="{{ asset('brand/'.$foto) }}" class="mb-2" alt="" height="60" width="60" style="border-radius: 100%;border:1px solid black;">
+                  <br>
+                  <h4>{{ Str::upper($name) }}</h4>
                 </a>
-                <p class="text-center">Welcom to System Nice Coffe</p>
+                <p class="text-center">Welcome to System Nice Coffe</p>
                 <form action="{{ route('dologin') }}" method="POST">
                     @csrf
                 

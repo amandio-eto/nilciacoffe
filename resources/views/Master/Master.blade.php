@@ -66,9 +66,9 @@ $date = $now->format('l, d F Y'); // Contoh: Thursday, 05 March 2026
 
     </div>
     <!-- Sidebar Start -->
-    <aside class="left-sidebar">
+    <aside class="left-sidebar mt-2">
       <!-- Sidebar scroll-->
-      <div>
+      <div class="mt-2">
         <div class="brand-logo d-flex align-items-center justify-content-between">
          
             <img src="{{ asset('brand/'.$foto) }}" style="border-radius: 100%;margin-left:50px;border:1px solid black;" width="60" height="60" alt="" />
