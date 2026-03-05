@@ -13,7 +13,7 @@
 
 <div class="row ">
     <div class="col mt-5 p-3">
-<form  action="{{ route('product.index') }}" method="GET" class="mb-3">
+<form  action="{{ route('product.index') }}" method="GET" class="mb-5">
     <input type="text" name="search" value="{{ request('search') }}" placeholder="Search name..." class="form-control" style="width: 300px; display: inline-block;">
     <button type="submit" class="btn btn-secondary"> <i class="bi bi-search"></i> Search</button>
     <a href="{{ route('product.index') }}" class="btn btn-danger"> Reset</a>
@@ -27,7 +27,7 @@
 
 
 
-<div class="position-fixed top-0 end-0 p-3" style="width:400px; z-index:1050;">
+<div class="position-fixed top-0 end-0 p-3" style="width:400px; z-index:1050;margin-top:150px;" >
     <div class="card shadow rounded-3 p-3">
         <h5 class="fw-bold mb-3">Cart</h5>
         <form method="POST" action="{{ route('transaction.store') }}">
@@ -63,8 +63,8 @@
 
     </div>
     @foreach($products as $p)
-        <div class="col-6 col-md-3">
-            <div class="card shadow-sm rounded-3 h-100 hover-scale">
+        <div class="col-6 col-md-3 mt-5">
+            <div class="card shadow-sm rounded-3 h-100 hover-scale mt-5">
 
                 {{-- Product Image --}}
                 <img src="{{ $p->image ? asset('uploads/products/'.$p->image) : 'https://via.placeholder.com/150' }}" 
@@ -90,7 +90,7 @@
                     {{-- Action Buttons --}}
                     <div class="mt-2 d-flex justify-content-between">
                         @if($p->stock>0)
-                            <button class="btn btn-sm btn-dark add-to-cart"
+                            <button class="btn btn-sm btn-dark add-to-cart" id="btn-cart"
                                     data-id="{{ $p->id }}"
                                     data-name="{{ $p->name }}"
                                     data-price="{{ $p->price }}">
@@ -209,6 +209,21 @@ function calculateChange(total){
     let change=paid-total;
     document.getElementById('change_display').innerHTML='$ '+(change>0?change.toFixed(2):'0.00');
 }
+</script>
+
+
+
+<script>
+const btnCart = document.getElementById('btn-cart');
+const cartDiv = document.getElementById('cart');
+
+btnCart.addEventListener('click', () => {
+    if(cartDiv.style.display === 'none' || cartDiv.style.display === '') {
+        cartDiv.style.display = 'block';
+    } else {
+        cartDiv.style.display = 'none';
+    }
+});
 </script>
 
 {{-- CSS --}}
