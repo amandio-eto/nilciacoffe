@@ -43,7 +43,10 @@ Route::group(['middleware'=> 'auth'], function(){
 });
 
 
+
+
 #Controller Profile
+      Route::get('/profiles', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.photo');
     Route::post('/profile/password', [ProfileController::class, 'changePassword'])->name('profile.password');
 #End ProfilleController
