@@ -47,7 +47,7 @@ $date = $now->format('l, d F Y'); // Contoh: Thursday, 05 March 2026
     <div class="app-topstrip bg-dark py-6 px-3 w-100 d-lg-flex align-items-center justify-content-between mb-4">
       <div class="d-flex align-items-center justify-content-center gap-5 mb-2 mb-lg-0">
        
-          <img src="{{ asset('brand/'.$foto) }}" alt="" width="150">
+          <img src="{{ asset('brand/'.$foto) }}" alt="" width="40" height="40">
       
       </div>
 
@@ -330,7 +330,7 @@ $date = $now->format('l, d F Y'); // Contoh: Thursday, 05 March 2026
 
 
                   @if (!Auth::user()->foto==null)
-                    <img src="{{ asset('profile/'.Auth::user()->foto) }}" alt="" width="35" height="35" class="rounded-circle" style="border:  1px solid black;">
+                    <img src="{{ asset('profile/'.Auth::user()->foto) }}" alt="" width="35" height="35" class="rounded-circle" style="border:  1px solid">
 
                     
                   @else

@@ -30,7 +30,8 @@ class AuthController extends Controller
 
         }catch(\Exception $e){
 
-             return back()->with('error', 'Failed Login');
+            toastr()->error('error', 'Failed Login');
+             return redirect()->route('login');
 
         }
         
