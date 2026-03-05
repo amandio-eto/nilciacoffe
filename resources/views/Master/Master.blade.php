@@ -64,7 +64,7 @@ $date = $now->format('l, d F Y'); // Contoh: Thursday, 05 March 2026
 
     </div>
     <!-- Sidebar Start -->
-    <aside class="left-sidebar mt-4">
+    <aside class="left-sidebar">
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
