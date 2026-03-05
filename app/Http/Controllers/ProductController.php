@@ -8,14 +8,22 @@ use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        $products = DB::table('products')
-            ->where('status', 1)
-            ->get();
+  
+    
+ public function index(Request $request)
+{
+    $query = DB::table('products')->where('status', 1);
 
-        return view('Products.index_product', compact('products'));
+    // Jika ada search keyword
+    if ($request->has('search') && $request->search != '') {
+        $query->where('name', 'like', '%' . $request->search . '%');
     }
+
+    $products = $query->get();
+
+    return view('Products.index_product', compact('products'));
+}
+    
 
     public function store(Request $request)
     {
