@@ -13,11 +13,11 @@
 
 <div class="row ">
     <div class="col mt-5 p-3">
-<for  action="{{ route('product.index') }}" method="GET" class="mb-3">
+<form  action="{{ route('product.index') }}" method="GET" class="mb-3">
     <input type="text" name="search" value="{{ request('search') }}" placeholder="Search name..." class="form-control" style="width: 300px; display: inline-block;">
     <button type="submit" class="btn btn-secondary"> <i class="bi bi-search"></i> Search</button>
     <a href="{{ route('product.index') }}" class="btn btn-danger"> Reset</a>
-</for>
+</form>
     </div>
 </div>
 
