@@ -1,14 +1,17 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockHistoryController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +41,23 @@ Route::group(['middleware'=> 'auth'], function(){
         Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 });
+
+
+#Controller Profile
+    Route::post('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.photo');
+    Route::post('/profile/password', [ProfileController::class, 'changePassword'])->name('profile.password');
+#End ProfilleController
+
+
+#ControllerBrand
+    Route::get('/brand/company', [BrandController::class, 'index'])->name('brand.index');
+    Route::post('/brand', [BrandController::class, 'store'])->name('brand.store');
+    Route::put('/brand/{id}', [BrandController::class, 'update'])->name('brand.update');
+    Route::delete('/brand/{id}', [BrandController::class, 'destroy'])->name('brand.destroy');
+#EndBrandController
+
+
+
 
 #EndAuthController
         Route::get('dashboard',[\App\Http\Controllers\DashboardController::class,'index'])->name('dashboard.index');

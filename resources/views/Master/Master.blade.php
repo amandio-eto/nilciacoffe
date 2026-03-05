@@ -1,34 +1,76 @@
 
 @include('Master.Header')
+
+@php
+
+
+$data = DB::table('brands')->get();
+
+foreach ($data as $brand) {
+    $foto = $brand->images;
+    echo $foto;
+}
+
+
+ $hour = date('H'); // 0 - 23
+    if ($hour >= 5 && $hour < 12) {
+        $greeting = 'Good Morning';
+        $icon = '🌞';
+    } elseif ($hour >= 12 && $hour < 17) {
+        $greeting = 'Good Afternoon';
+        $icon = '☀️';
+    } else {
+        $greeting = 'Good Night';
+        $icon = '🌙';
+    }
+use Carbon\Carbon;
+
+// Waktu sekarang
+$now = Carbon::now(); // Sesuai timezone di config/app.php
+
+// Format jam:menit AM/PM
+$time = $now->format('h:i A'); // Contoh: 02:35 PM
+
+// Format tanggal lengkap
+$date = $now->format('l, d F Y'); // Contoh: Thursday, 05 March 2026
+
+
+
+@endphp
+
+
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
 
     <!--  App Topstrip -->
-    <div class="app-topstrip bg-dark py-6 px-3 w-100 d-lg-flex align-items-center justify-content-between">
+    <div class="app-topstrip bg-dark py-6 px-3 w-100 d-lg-flex align-items-center justify-content-between mb-4">
       <div class="d-flex align-items-center justify-content-center gap-5 mb-2 mb-lg-0">
-        <a class="d-flex justify-content-center" href="#">
-          <img src="./assets/images/logos/logo-wrappixel.svg" alt="" width="150">
-        </a>
+       
+          <img src="{{ asset('brand/'.$foto) }}" alt="" width="150">
+      
       </div>
 
       <div class="d-lg-flex align-items-center gap-2">
-        <h3 class="text-white mb-2 mb-lg-0 fs-5 text-center" style="color: chocolate;">Natural Inspiração Líquido Café Ícone Aroma (Nilcia Coffe)</h3>
+       <span style="font-size: 2rem; margin-right:10px;">{{ $icon }}</span>
+        <h6 style="color: white;" class="mb-0">{{ $greeting }}, {{ Auth::user()->name }} | {{ $date }} : {{ $time }}</h6>
         <div class="d-flex align-items-center justify-content-center gap-2">
           
+
+
          
         </div>
       </div>
 
     </div>
     <!-- Sidebar Start -->
-    <aside class="left-sidebar">
+    <aside class="left-sidebar mt-4">
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.html" class="text-nowrap logo-img">
-            <img src="{{ asset('./assets/images/logos/logo.svg') }}" alt="" />
-          </a>
+         
+            <img src="{{ asset('brand/'.$foto) }}" style="border-radius: 100%;margin-left:50px;border:1px solid black;" width="60" height="60" alt="" />
+          
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-6"></i>
           </div>
@@ -207,7 +249,7 @@
               <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
                   <a class="sidebar-link justify-content-between"  
-                    href="#">
+                    href="{{ route('brand.index') }}">
                     <div class="d-flex align-items-center gap-3">
                       <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
@@ -218,54 +260,7 @@
                   </a>
                 </li>
                
-                <li class="sidebar-item">
-                  <a class="sidebar-link justify-content-between"  
-                    href="#">
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="round-16 d-flex align-items-center justify-content-center">
-                        <i class="ti ti-circle"></i>
-                      </div>
-                      <span class="hide-menu">List</span>
-                    </div>
-                    
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link justify-content-between"  
-                    href="#">
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="round-16 d-flex align-items-center justify-content-center">
-                        <i class="ti ti-circle"></i>
-                      </div>
-                      <span class="hide-menu">Checkout</span>
-                    </div>
-                    
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link justify-content-between"  
-                    href="#">
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="round-16 d-flex align-items-center justify-content-center">
-                        <i class="ti ti-circle"></i>
-                      </div>
-                      <span class="hide-menu">Add Product</span>
-                    </div>
-                    
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link justify-content-between"  
-                    href="#">
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="round-16 d-flex align-items-center justify-content-center">
-                        <i class="ti ti-circle"></i>
-                      </div>
-                      <span class="hide-menu">Edit Product</span>
-                    </div>
-                    
-                  </a>
-                </li>
+               
               </ul>
             </li>
           
@@ -298,7 +293,7 @@
     </aside>
     <!--  Sidebar End -->
     <!--  Main wrapper -->
-    <div class="body-wrapper">
+    <div class="body-wrapper mt-2">
       <!--  Header Start -->
       <header class="app-header">
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -308,7 +303,7 @@
                 <i class="ti ti-menu-2"></i>
               </a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown pt-4">
               <a class="nav-link " href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown" aria-expanded="false">
                 <iconify-icon icon="solar:bell-linear" class="fs-6"></iconify-icon>
                 <div class="notification bg-primary rounded-circle"></div>
