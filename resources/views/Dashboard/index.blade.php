@@ -15,7 +15,7 @@
                                         </div>
                                         <div>
                                              <i class="bi bi-people"></i>
-                                            <div class="fs-4 fw-bold text-dark"><span class="counter">45</span></div>
+                                            <div class="fs-4 fw-bold text-dark"><span class="counter">{{ $user }}</span></div>
                                             <h6 class="fs-13 fw-semibold text-truncate-1-line">Total Users</h6>
                                         </div>
                                     </div>
