@@ -49,7 +49,7 @@
                 <option value="transfer">Transfer</option>
             </select>
 
-            <input type="number" name="paid_amount" id="paid_amount" class="form-control mb-2" placeholder="Paid Amount">
+            <input type="text" name="paid_amount" id="paid_amount" class="form-control mb-2" placeholder="Paid Amount">
 
             <div class="mb-2">
                 <small>Change</small>
