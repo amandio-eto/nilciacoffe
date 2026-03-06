@@ -42,7 +42,7 @@
                                 <div>
                                     <h6 class="text-muted mb-1">Today Sales</h6>
                                     <h4 class="fw-bold text-success mb-0">
-                                        {{ money($total) }}
+                                        {{ '$'.$total }}
                                     </h4>
                                     <small class="text-muted">
                                         Cashier : {{ Auth::user()->name }}
