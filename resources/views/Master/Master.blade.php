@@ -49,7 +49,7 @@ $date = $now->format('l, d F Y'); // Contoh: Thursday, 05 March 2026
       <div class="d-flex align-items-center justify-content-center gap-5 mb-2 mb-lg-0">
        
           <img src="{{ asset('brand/'.$foto) }}" alt="" width="40" height="40">
-          <h6 class="text-white">{{ Str::upper($name) }}</h6>
+          <h6 class="text-white">"Test Title"</h6>
       
       </div>
 
