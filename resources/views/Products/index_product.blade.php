@@ -155,9 +155,12 @@ class="form-control">
 class="form-control mb-2"
 placeholder="Product Name" required>
 
-<input type="number" name="price"
-class="form-control mb-2"
-placeholder="Price" required>
+<input type="number" 
+       name="price" 
+       class="form-control mb-2" 
+       placeholder="Price"
+       step="0.01"
+       required>
 
 <input type="number" name="stock"
 class="form-control mb-2"
