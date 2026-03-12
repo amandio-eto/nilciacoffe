@@ -110,7 +110,8 @@ value="{{ $p->name }}" required>
 
 <input type="number" name="price"
 class="form-control mb-2"
-value="{{ $p->price }}" required>
+value="{{ $p->price }}"   step="0.01"
+       required>
 
 <input type="number" name="stock"
 class="form-control mb-2"
